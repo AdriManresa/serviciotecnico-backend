@@ -3,6 +3,7 @@ package com.manresa.serviciotecnico.controllers;
 import com.manresa.serviciotecnico.models.EstadoOrden;
 import com.manresa.serviciotecnico.models.OrdenDeTrabajo;
 import com.manresa.serviciotecnico.services.OrdenDeTrabajoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,12 +14,12 @@ import java.util.List;
 @RequestMapping("/api/ordenes") // Esta es la URL base. Todo va a entrar por localhost:8080/api/ordenes
 public class OrdenDeTrabajoController {
 
-    // Inyectamos nuestro servicio (el cerebro)
     @Autowired
     private OrdenDeTrabajoService ordenService;
     @PostMapping("/cliente/{idCliente}")
     public OrdenDeTrabajo crearOrden(
             @PathVariable Long idCliente, // Saca el ID directamente de la URL (ej: el "1")
+            @Valid
             @RequestBody OrdenDeTrabajo nuevaOrden // Saca los datos del cuerpo de la petición (JSON)
     ) {
 
