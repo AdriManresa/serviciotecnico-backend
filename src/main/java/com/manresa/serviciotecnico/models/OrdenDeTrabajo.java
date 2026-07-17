@@ -1,6 +1,7 @@
 package com.manresa.serviciotecnico.models;
 import jakarta.persistence.*;
 import lombok.Data;
+import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
 @Data
@@ -11,8 +12,9 @@ public class OrdenDeTrabajo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @NotBlank(message = "El nombre del equipo es obligatorio para ingresarlo al taller")
     private String equipo;            // Ej: "Notebook HP 15"
+    @NotBlank(message = "Descripción de la falla es obligatoria para ingresarlo al taller")
     private String fallaReportada;    // Ej: "No enciende"
     private String diagnostico;       // Tu nota técnica
 
